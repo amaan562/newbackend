@@ -99,14 +99,38 @@ public class User implements UserDetails{
 	public String resume;
 	public String marksheets;
 	private Long salary;
+	private boolean itPolicy;
+	private boolean ndaPolicy;
+	private boolean hrPolicy;
 	
 	private String location;
 	
 	private String role;
 	
-	
-	
-	
+	public boolean isItPolicy() {
+		return itPolicy;
+	}
+
+	public void setItPolicy(boolean itPolicy) {
+		this.itPolicy = itPolicy;
+	}
+
+	public boolean isNdaPolicy() {
+		return ndaPolicy;
+	}
+
+	public void setNdaPolicy(boolean ndaPolicy) {
+		this.ndaPolicy = ndaPolicy;
+	}
+
+	public boolean isHrPolicy() {
+		return hrPolicy;
+	}
+
+	public void setHrPolicy(boolean hrPolicy) {
+		this.hrPolicy = hrPolicy;
+	}
+
 	public String getRole() {
 		return role;
 	}
