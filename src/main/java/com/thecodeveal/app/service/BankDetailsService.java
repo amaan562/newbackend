@@ -29,17 +29,17 @@ public class BankDetailsService {
 		return bankDetailsRepository.findByUsername(username);
 	}
 	
-	@Transactional
-	public List<BankDetails> deleteBankDetails(String username){
-        return bankDetailsRepository.deleteByUsername(username);
-    }
+//	@Transactional
+//	public List<BankDetails> deleteBankDetails(String username){
+//        return bankDetailsRepository.deleteByUsername(username);
+//    }
 	
 	public String updateBankDetails(String username, BankDetails res) {
 		BankDetails existingRes = bankDetailsRepository.findByUsername(username);
 		if(existingRes==null){
             return "Data Not Found";
         }
-		existingRes.setUsername(username);
+//		existingRes.setUsername(username);
 		existingRes.setAccountNumber(res.getAccountNumber());
 		existingRes.setFirstEmployment(res.isFirstEmployment());
 		existingRes.setIfsc(res.getIfsc());

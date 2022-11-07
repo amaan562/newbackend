@@ -14,6 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.data.domain.AfterDomainEventPublication;
@@ -35,6 +36,11 @@ public class User implements UserDetails{
 	@Column(name="USER_KEY")
 	private String password;
 	
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name="BANK_DETAILS", joinColumns = @JoinColumn(referencedColumnName = "id"),
+	inverseJoinColumns = @JoinColumn(referencedColumnName = "id"))
+	private BankDetails bankDetails;
+	
 	@ManyToMany(cascade = CascadeType.MERGE,fetch=FetchType.EAGER)
 	@JoinTable(name="AUTH_USER_AUTHORITY",joinColumns = @JoinColumn(referencedColumnName = "id"),
 	inverseJoinColumns = @JoinColumn(referencedColumnName = "id")		)
@@ -47,9 +53,6 @@ public class User implements UserDetails{
 			@JoinColumn(referencedColumnName = "id") , 
 			@JoinColumn(referencedColumnName = "status")
 	}     )
-	
-	
-	
 	
 	private List<Training> courses;
 	
@@ -375,6 +378,14 @@ public class User implements UserDetails{
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public BankDetails getBankDetails() {
+		return bankDetails;
+	}
+
+	public void setBankDetails(BankDetails bankDetails) {
+		this.bankDetails = bankDetails;
 	}
 	
 	

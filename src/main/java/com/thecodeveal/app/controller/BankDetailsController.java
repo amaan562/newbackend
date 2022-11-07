@@ -48,10 +48,10 @@ public class BankDetailsController {
        
     }
     
-    @DeleteMapping("/bankDetails/{username}")
-    public List<BankDetails> delResById(@PathVariable("username") String username){
-        return bankDetailsService.deleteBankDetails(username);
-    }
+//    @DeleteMapping("/bankDetails/{username}")
+//    public List<BankDetails> delResById(@PathVariable("username") String username){
+//        return bankDetailsService.deleteBankDetails(username);
+//    }
    @PutMapping("/bankDetails/{username}")
     public String updateRes(@PathVariable("username") String username,@RequestBody BankDetails resupdate){
         return bankDetailsService.updateBankDetails(username,resupdate);

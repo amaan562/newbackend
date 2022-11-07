@@ -9,9 +9,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.thecodeveal.app.model.Authority;
+import com.thecodeveal.app.model.BankDetails;
 import com.thecodeveal.app.model.Department;
 import com.thecodeveal.app.model.User;
 import com.thecodeveal.app.repo.AuthorityDetailsRepository;
+import com.thecodeveal.app.repo.BankDetailsRepository;
 import com.thecodeveal.app.repo.DepartmentRepository;
 import com.thecodeveal.app.repo.UserDetailsRepository;
 import com.thecodeveal.app.service.AuthorityService;
@@ -25,6 +27,9 @@ public class SpringSecurityDemoAppApplication {
 
 	@Autowired
 	UserDetailsRepository userDetailsRepository;
+	
+	@Autowired
+	BankDetailsRepository bankDetailsRepository;
 	
 	@Autowired
 	PasswordEncoder passwordEncoder;
@@ -83,8 +88,16 @@ public class SpringSecurityDemoAppApplication {
 			
 			user.setProfilepic("https://northmemorial.com/wp-content/uploads/2016/10/PersonPlaceholder.png");
 			
+			BankDetails bankDetails = new BankDetails("","","",false);
+//			bankDetails.setAccountNumber(null);
+//			bankDetails.setFirstEmployment(false);
+//			bankDetails.setIfsc(null);
+//			bankDetails.setPan(null);
+			
+//			user.setBankDetails(bankDetails);
 			
 			userDetailsRepository.save(user);
+			bankDetailsRepository.save(bankDetails);
 			
 			System.out.println(user.getUsername() +" "+user.getPassword());
 			
@@ -140,9 +153,10 @@ public class SpringSecurityDemoAppApplication {
 			user.setAuthorites(authorityList);
 			
 			user.setProfilepic("https://northmemorial.com/wp-content/uploads/2016/10/PersonPlaceholder.png");
-			
+			BankDetails bankDetails = new BankDetails("","","",false);
 			
 			userDetailsRepository.save(user);
+			bankDetailsRepository.save(bankDetails);
 			
 		System.out.println(user.getUsername() +" "+user.getPassword());
 		}

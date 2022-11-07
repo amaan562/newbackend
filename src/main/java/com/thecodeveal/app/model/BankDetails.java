@@ -19,8 +19,8 @@ public class BankDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@Column(name= "username")
-	private String username;
+//	@Column(name= "username")
+//	private String username;
 	
 	@Column(name = "ifsc")
 	private String ifsc;
@@ -34,10 +34,14 @@ public class BankDetails {
 	@Column(name = "firstEmployment")
 	private boolean firstEmployment;
 	
-//	@ManyToMany(cascade = CascadeType.MERGE,fetch=FetchType.EAGER)
-//	@JoinTable(name="AUTH_USER_DETAILS",
-//			   joinColumns = @JoinColumn(referencedColumnName = "id"),
-//			   inverseJoinColumns = @JoinColumn(referencedColumnName = "id"))
+	public BankDetails() {}
+	public BankDetails(String ifsc, String pan, String accountNumber, boolean firstEmployment) {
+		super();
+		this.ifsc = ifsc;
+		this.pan = pan;
+		this.accountNumber = accountNumber;
+		this.firstEmployment = firstEmployment;
+	}
 
 	public long getId() {
 		return id;
@@ -47,13 +51,13 @@ public class BankDetails {
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
+//	public String getUsername() {
+//		return username;
+//	}
+//
+//	public void setUsername(String username) {
+//		this.username = username;
+//	}
 
 	public String getIfsc() {
 		return ifsc;

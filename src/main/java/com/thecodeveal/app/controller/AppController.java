@@ -24,9 +24,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thecodeveal.app.model.Authority;
+import com.thecodeveal.app.model.BankDetails;
 import com.thecodeveal.app.model.Department;
 import com.thecodeveal.app.model.User;
 import com.thecodeveal.app.repo.AuthorityDetailsRepository;
+import com.thecodeveal.app.repo.BankDetailsRepository;
 import com.thecodeveal.app.repo.UserDetailsRepository;
 import com.thecodeveal.app.service.AuthorityService;
 import com.thecodeveal.app.service.CustomUserService;
@@ -42,6 +44,9 @@ public class AppController {
 	
 	@Autowired
 	UserDetailsRepository userDetailsRepository;
+	
+	@Autowired
+	BankDetailsRepository bankDetailsRepository;
 	
 	@Autowired
 	CustomUserService customUserService;
@@ -172,7 +177,15 @@ public class AppController {
 				user.setAuthorites(authorityList);				
 				user.setProfilepic("https://northmemorial.com/wp-content/uploads/2016/10/PersonPlaceholder.png");	
 				user.setSalary(Long.parseLong(salary));
+				
+				BankDetails bankDetails = new BankDetails("","","",false);
+//				BankDetails bankDetails = new BankDetails();
+				
+				
+//				user.setBankDetails(bankDetails);
+				
 				userDetailsRepository.save(user);
+				bankDetailsRepository.save(bankDetails);
 				return true;
 			  
 		
