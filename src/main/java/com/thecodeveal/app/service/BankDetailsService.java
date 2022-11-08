@@ -44,6 +44,9 @@ public class BankDetailsService {
 		existingRes.setFirstEmployment(res.isFirstEmployment());
 		existingRes.setIfsc(res.getIfsc());
 		existingRes.setPan(res.getPan());
+		existingRes.setPreviousCompany(res.getPreviousCompany());
+		existingRes.setPreviousRole(res.getPreviousRole());
+		existingRes.setPreviousSalary(res.getPreviousSalary());
 		
 		bankDetailsRepository.save(existingRes);
 		return "Details updated successfully";

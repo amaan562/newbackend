@@ -34,15 +34,27 @@ public class BankDetails {
 	@Column(name = "firstEmployment")
 	private boolean firstEmployment;
 	
+	@Column(name = "previousCompany")
+	private String previousCompany;
+	
+	@Column(name = "previousRole")
+	private String previousRole;
+	
+	@Column(name = "previousSalary")
+	private int previousSalary;
+	
 	public BankDetails() {}
-	public BankDetails(String ifsc, String pan, String accountNumber, boolean firstEmployment) {
+	public BankDetails(String ifsc, String pan, String accountNumber, boolean firstEmployment, String previousCompany,
+			String previousRole, int previousSalary) {
 		super();
 		this.ifsc = ifsc;
 		this.pan = pan;
 		this.accountNumber = accountNumber;
 		this.firstEmployment = firstEmployment;
+		this.previousCompany = previousCompany;
+		this.previousRole = previousRole;
+		this.previousSalary = previousSalary;
 	}
-
 	public long getId() {
 		return id;
 	}
@@ -89,6 +101,24 @@ public class BankDetails {
 
 	public void setFirstEmployment(boolean firstEmployment) {
 		this.firstEmployment = firstEmployment;
+	}
+	public String getPreviousCompany() {
+		return previousCompany;
+	}
+	public void setPreviousCompany(String previousCompany) {
+		this.previousCompany = previousCompany;
+	}
+	public String getPreviousRole() {
+		return previousRole;
+	}
+	public void setPreviousRole(String previousRole) {
+		this.previousRole = previousRole;
+	}
+	public int getPreviousSalary() {
+		return previousSalary;
+	}
+	public void setPreviousSalary(int previousSalary) {
+		this.previousSalary = previousSalary;
 	}
 	
 	

@@ -88,7 +88,8 @@ public class SpringSecurityDemoAppApplication {
 			
 			user.setProfilepic("https://northmemorial.com/wp-content/uploads/2016/10/PersonPlaceholder.png");
 			
-			BankDetails bankDetails = new BankDetails("","","",false);
+//			BankDetails bankDetails = new BankDetails("","","",false,"","",0);
+			BankDetails bankDetails = new BankDetails();
 //			bankDetails.setAccountNumber(null);
 //			bankDetails.setFirstEmployment(false);
 //			bankDetails.setIfsc(null);
@@ -153,7 +154,8 @@ public class SpringSecurityDemoAppApplication {
 			user.setAuthorites(authorityList);
 			
 			user.setProfilepic("https://northmemorial.com/wp-content/uploads/2016/10/PersonPlaceholder.png");
-			BankDetails bankDetails = new BankDetails("","","",false);
+//			BankDetails bankDetails = new BankDetails("","","",false,"","",0);
+			BankDetails bankDetails = new BankDetails();
 			
 			userDetailsRepository.save(user);
 			bankDetailsRepository.save(bankDetails);
