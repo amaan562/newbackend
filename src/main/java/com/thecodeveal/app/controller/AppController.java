@@ -178,11 +178,9 @@ public class AppController {
 				user.setProfilepic("https://northmemorial.com/wp-content/uploads/2016/10/PersonPlaceholder.png");	
 				user.setSalary(Long.parseLong(salary));
 				
-//				BankDetails bankDetails = new BankDetails("","","",false,"","",0);
 				BankDetails bankDetails = new BankDetails();
-				
-				
-//				user.setBankDetails(bankDetails);
+				bankDetails.setUser(user);
+				user.setBankDetails(bankDetails);
 				
 				userDetailsRepository.save(user);
 				bankDetailsRepository.save(bankDetails);

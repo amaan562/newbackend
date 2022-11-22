@@ -88,14 +88,9 @@ public class SpringSecurityDemoAppApplication {
 			
 			user.setProfilepic("https://northmemorial.com/wp-content/uploads/2016/10/PersonPlaceholder.png");
 			
-//			BankDetails bankDetails = new BankDetails("","","",false,"","",0);
 			BankDetails bankDetails = new BankDetails();
-//			bankDetails.setAccountNumber(null);
-//			bankDetails.setFirstEmployment(false);
-//			bankDetails.setIfsc(null);
-//			bankDetails.setPan(null);
-			
-//			user.setBankDetails(bankDetails);
+			bankDetails.setUser(user);
+			user.setBankDetails(bankDetails);
 			
 			userDetailsRepository.save(user);
 			bankDetailsRepository.save(bankDetails);
@@ -154,8 +149,10 @@ public class SpringSecurityDemoAppApplication {
 			user.setAuthorites(authorityList);
 			
 			user.setProfilepic("https://northmemorial.com/wp-content/uploads/2016/10/PersonPlaceholder.png");
-//			BankDetails bankDetails = new BankDetails("","","",false,"","",0);
+
 			BankDetails bankDetails = new BankDetails();
+			bankDetails.setUser(user);
+			user.setBankDetails(bankDetails);
 			
 			userDetailsRepository.save(user);
 			bankDetailsRepository.save(bankDetails);
@@ -180,7 +177,12 @@ public class SpringSecurityDemoAppApplication {
 			user.setProfilepic("https://northmemorial.com/wp-content/uploads/2016/10/PersonPlaceholder.png");
 			
 			
-					userDetailsRepository.save(user);
+			BankDetails bankDetails = new BankDetails();
+			bankDetails.setUser(user);
+			user.setBankDetails(bankDetails);
+			
+			userDetailsRepository.save(user);
+			bankDetailsRepository.save(bankDetails);
 			
 				System.out.println(user.getUsername() +" "+user.getPassword());
 		}

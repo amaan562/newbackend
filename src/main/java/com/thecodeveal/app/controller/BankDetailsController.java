@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thecodeveal.app.model.BankDetails;
 import com.thecodeveal.app.model.User;
 import com.thecodeveal.app.service.BankDetailsService;
+import com.thecodeveal.app.service.CustomUserService;
 
 @RestController
 @RequestMapping("/")
@@ -27,6 +28,8 @@ public class BankDetailsController {
 
 	@Autowired
 	private BankDetailsService bankDetailsService;
+	@Autowired
+	private CustomUserService customUserService;
 	
 	 @PostMapping("/bankDetails")
     public BankDetails saveBankDetails(@RequestBody BankDetails res){
@@ -42,16 +45,14 @@ public class BankDetailsController {
     public String getBankDetails(@PathVariable("username") String username) throws JsonProcessingException{
     	
     	ObjectMapper mapper = new ObjectMapper();
-  	  BankDetails u =  bankDetailsService.getBankDetails(username);
-  	  return mapper.writeValueAsString(u);
+  	  	User user = customUserService.getDetails(username);
+  	  	BankDetails u = user.getBankDetails();
+  	  	System.out.println(mapper.writeValueAsString(u)+"hhhhhhh");	  
+  	  	return mapper.writeValueAsString(u);
     	
        
     }
     
-//    @DeleteMapping("/bankDetails/{username}")
-//    public List<BankDetails> delResById(@PathVariable("username") String username){
-//        return bankDetailsService.deleteBankDetails(username);
-//    }
    @PutMapping("/bankDetails/{username}")
     public String updateRes(@PathVariable("username") String username,@RequestBody BankDetails resupdate){
         return bankDetailsService.updateBankDetails(username,resupdate);

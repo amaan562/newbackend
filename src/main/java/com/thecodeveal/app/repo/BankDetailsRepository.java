@@ -10,7 +10,7 @@ import com.thecodeveal.app.model.BankDetails;
 
 @Repository
 public interface BankDetailsRepository extends JpaRepository<BankDetails, Long> {
-	@Query(value="Select * from AUTH_USER_DETAILS u JOIN BANK_DETAILS b where u.id=b.id and u.user_name=?1", nativeQuery=true)
+	@Query(value="Select * from AUTH_USER_DETAILS u JOIN BANK_DETAILS b where u.bank_details_id=b.id and u.user_name=?1", nativeQuery=true)
 	BankDetails findByUsername(String username);
 //	List<BankDetails> deleteByUsername(String username);
 	List<BankDetails> findAll();

@@ -21,10 +21,14 @@ import org.springframework.data.domain.AfterDomainEventPublication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.*;
 
 @Table(name="AUTH_USER_DETAILS")
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class User implements UserDetails{
 	
 	@Id
@@ -36,16 +40,15 @@ public class User implements UserDetails{
 	@Column(name="USER_KEY")
 	private String password;
 	
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinTable(name="BANK_DETAILS", joinColumns = @JoinColumn(referencedColumnName = "id"),
-	inverseJoinColumns = @JoinColumn(referencedColumnName = "id"))
-	private BankDetails bankDetails;
-	
 	@ManyToMany(cascade = CascadeType.MERGE,fetch=FetchType.EAGER)
 	@JoinTable(name="AUTH_USER_AUTHORITY",joinColumns = @JoinColumn(referencedColumnName = "id"),
 	inverseJoinColumns = @JoinColumn(referencedColumnName = "id")		)
 	private List<Authority>authorites;
 	
+	@JsonIgnore
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "bank_details_id", unique = true)
+	private BankDetails bankDetails;
 	
 	@ManyToMany(cascade = CascadeType.MERGE,fetch=FetchType.LAZY)
 	@JoinTable(name="AUTH_USER_TRAINING",joinColumns = @JoinColumn(referencedColumnName = "id"),

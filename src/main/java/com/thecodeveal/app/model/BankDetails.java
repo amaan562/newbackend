@@ -10,10 +10,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Table(name="BANK_DETAILS")
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class BankDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,6 +47,11 @@ public class BankDetails {
 	
 	@Column(name = "previousSalary")
 	private int previousSalary;
+	
+	@JsonIgnore
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "bankDetails")
+	private User user;
+	
 	
 	public BankDetails() {}
 	public BankDetails(String ifsc, String pan, String accountNumber, boolean firstEmployment, String previousCompany,
@@ -120,6 +130,11 @@ public class BankDetails {
 	public void setPreviousSalary(int previousSalary) {
 		this.previousSalary = previousSalary;
 	}
-	
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	
 }
